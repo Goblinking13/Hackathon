@@ -1,0 +1,26 @@
+.ec-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.ec-link {
+    color: #eef3ff;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.ec-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 🔹 Вот тут магия подсветки */
+.ec-link.active {
+    background: #eef3ff;
+    color: #0e1c57;
+    font-weight: 600;
+}

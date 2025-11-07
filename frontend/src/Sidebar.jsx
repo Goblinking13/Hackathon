@@ -1,14 +1,16 @@
-import { useMemo } from "react";
-import "./App.css";
-import logo from "./assets/logo.png"; // если используешь PNG
+// Sidebar.jsx
+import React, { useMemo } from "react";
+import "./styles/App.css";
+import "./styles/Sidebar.css";
+import logo from "./assets/logo.png";
 
-export default function Sidebar({ active = "ai-chat-settings", onNavigate = () => {} }) {
+export default function Sidebar({ active = "ai-chat", onNavigate = () => {} }) {
     const items = useMemo(
         () => [
-            { key: "profile",          label: "Profile",          icon: "user" },
-            { key: "prediction",       label: "Prediction",       icon: "bars" },
-            { key: "settings",         label: "Settings",         icon: "sliders" },
-            { key: "ai-chat-settings", label: "AI Chat Settings", icon: "chat", prominent: true },
+            { key: "profile",    label: "Profile",           icon: "user"    },
+            { key: "prediction", label: "Prediction",        icon: "bars"    },
+            { key: "settings",   label: "Settings",          icon: "sliders" },
+            { key: "ai-chat",    label: "AI Chat Assistant", icon: "chat", prominent: true },
         ],
         []
     );
@@ -37,16 +39,28 @@ export default function Sidebar({ active = "ai-chat-settings", onNavigate = () =
                     >
             <span className="ec-icon" aria-hidden>
               {it.icon === "user" && (
-                  <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Z"/><path d="M3 20a9 9 0 0 1 18 0"/></svg>
+                  <svg viewBox="0 0 24 24">
+                      <path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Z"/><path d="M3 20a9 9 0 0 1 18 0"/>
+                  </svg>
               )}
                 {it.icon === "bars" && (
-                    <svg viewBox="0 0 24 24"><rect x="4" y="10" width="3" height="10" rx="1"/><rect x="10.5" y="6" width="3" height="14" rx="1"/><rect x="17" y="3" width="3" height="17" rx="1"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <rect x="4" y="10" width="3" height="10" rx="1"/>
+                        <rect x="10.5" y="6" width="3" height="14" rx="1"/>
+                        <rect x="17" y="3" width="3" height="17" rx="1"/>
+                    </svg>
                 )}
                 {it.icon === "sliders" && (
-                    <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="2.2"/><path d="M8 3v2M8 11v10M16 6v-3M16 11v10"/><circle cx="16" cy="11" r="2.2"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="8" cy="8" r="2.2"/>
+                        <path d="M8 3v2M8 11v10M16 6v-3M16 11v10"/>
+                        <circle cx="16" cy="11" r="2.2"/>
+                    </svg>
                 )}
                 {it.icon === "chat" && (
-                    <svg viewBox="0 0 24 24"><path d="M4 5h16v10a3 3 0 0 1-3 3H9l-5 3V5Z"/></svg>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 5h16v10a3 3 0 0 1-3 3H9l-5 3V5Z"/>
+                    </svg>
                 )}
             </span>
                         <span className="ec-label">{it.label}</span>
