@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import "../styles/ChatPage.css";
 import aiAvatar from "../assets/ai-avatar.png"
+import { FaArrowUp } from "react-icons/fa";
 
 function uid() {
     if (typeof crypto !== "undefined" && crypto.randomUUID) return crypto.randomUUID();
@@ -10,7 +11,7 @@ function uid() {
 
 export default function ChatPage({ sessionId, onAssistantReply }) {
     const [messages, setMessages] = useState([
-        { id: uid(), role: "assistant", content: "Привет! Пиши ниже 👇" },
+        { id: uid(), role: "assistant", content: "👋 Hi there! I'm your AI financial assistant - ready to help you manage your money smarter.\n" },
     ]);
     const [input, setInput] = useState("");
     const [isSending, setIsSending] = useState(false);
@@ -54,13 +55,13 @@ export default function ChatPage({ sessionId, onAssistantReply }) {
             if (!res.ok) throw new Error("Server error");
             const data = await res.text();
 
-            const asstMsg = { id: uid(), role: "assistant", content: data || "…(пустой ответ)" };
+            const asstMsg = { id: uid(), role: "assistant", content: data || "…(empty answer)" };
             setMessages((prev) => [...prev, asstMsg]);
             if (onAssistantReply) onAssistantReply(data);
         } catch (e) {
             setMessages((prev) => [
                 ...prev,
-                { id: uid(), role: "assistant", content: "Ошибка: не удалось связаться с сервером." },
+                { id: uid(), role: "assistant", content: "Error: Unable to contact the server." },
             ]);
             console.error(e);
         } finally {
@@ -85,7 +86,7 @@ export default function ChatPage({ sessionId, onAssistantReply }) {
                 {messages.map((m) => (
                     <Bubble key={m.id} role={m.role} text={m.content} />
                 ))}
-                {isSending && <Bubble role="assistant" text="Печатаю…" subtle />}
+                {isSending && <Bubble role="assistant" text="Thinking.." subtle />}
             </div>
 
             <div className="ec-chat-input">
@@ -103,7 +104,7 @@ export default function ChatPage({ sessionId, onAssistantReply }) {
                     disabled={!canSend}
                     title="Send message"
                 >
-                    🡅
+                    <FaArrowUp size={18} />
                 </Button>
 
             </div>
@@ -125,5 +126,80 @@ function Bubble({ role, text, subtle }) {
                 {text}
             </div>
         </div>
+    );
+}
+
+function parseImageFromText(text) {
+    if (!text) return null;
+
+    // markdown ![alt](url)
+    const md = text.match(/!\[[^\]]*\]\((https?:\/\/[^\s)]+)\)/i);
+    if (md) return { type: "url", src: md[1], alt: "image" };
+
+    // прямой http(s) URL на картинку
+    if (/^https?:\/\/.+\.(png|jpg|jpeg|gif|webp|svg)(\?.*)?$/i.test(text)) {
+        return { type: "url", src: text, alt: "image" };
+    }
+
+    // серверный роут типа: image/generate/cat
+    if (/^image\//i.test(text)) {
+        return { type: "server", path: text.replace(/^\/+/, "") };
+    }
+
+    return null;
+}
+
+function ChatImage({ descriptor }) {
+    const [src, setSrc] = React.useState(null);
+    const [loading, setLoading] = React.useState(descriptor.type === "server");
+    const [error, setError] = React.useState(null);
+
+    React.useEffect(() => {
+        let revoked = false;
+        let objectUrl = null;
+
+        async function load() {
+            if (descriptor.type === "url") {
+                setSrc(descriptor.src);
+                setLoading(false);
+                return;
+            }
+            try {
+                setLoading(true);
+                const res = await fetch(new URL(descriptor.path, "http://localhost:8080/"), {
+                    method: "GET",
+                });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const blob = await res.blob();
+                objectUrl = URL.createObjectURL(blob);
+                if (!revoked) setSrc(objectUrl);
+            } catch (e) {
+                if (!revoked) setError(e?.message || "Load error");
+            } finally {
+                if (!revoked) setLoading(false);
+            }
+        }
+        load();
+
+        return () => {
+            revoked = true;
+            if (objectUrl) URL.revokeObjectURL(objectUrl);
+        };
+    }, [descriptor]);
+
+    if (loading) {
+        return <div className="ec-img-skeleton" aria-label="Loading image…" />;
+    }
+    if (error) {
+        return (
+            <div className="ec-img-error">
+                <span>Failed to load image</span>
+            </div>
+        );
+    }
+    return (
+        <a href={src} target="_blank" rel="noreferrer" className="ec-img-link">
+            <img src={src} alt={descriptor.alt || "image"} className="ec-img" />
+        </a>
     );
 }

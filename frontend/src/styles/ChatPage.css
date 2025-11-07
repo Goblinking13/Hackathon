@@ -1,3 +1,13 @@
+/* Глобальный стиль для всего приложения */
+body, html, #root {
+    font-family: "Inter", "Segoe UI", "Roboto", sans-serif;
+    font-size: 15px;        /* ← общий размер шрифта */
+    line-height: 1.45;      /* ← межстрочный интервал */
+    color: #0e1c57;         /* ← цвет основного текста */
+    background-color: #f5f7fb;
+}
+
+
 .ec-chat-root {
     height: 100%;
     display: flex;
