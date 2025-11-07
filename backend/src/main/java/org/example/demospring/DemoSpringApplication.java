@@ -3,6 +3,7 @@ package org.example.demospring;
 import org.example.demospring.service.DocumentService;
 import org.example.demospring.service.MessageHistory;
 import org.example.demospring.service.MessageHistoryJPA;
+import org.example.demospring.service.UserFinanceDataJPA;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,6 +25,9 @@ public class DemoSpringApplication {
   public DocumentService documentService(VectorStore vectorStore) {
     return new DocumentService(vectorStore);
   }
+
+  @Bean
+  public UserFinanceDataJPA financeService(){return new UserFinanceDataJPA();}
 
 
 

@@ -88,6 +88,12 @@
             <artifactId>spring-cloud-azure-starter-data-cosmos</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.9</version>
+        </dependency>
+
         <!--        <dependency>-->
 <!--            <groupId>org.springframework.ai</groupId>-->
 <!--            <artifactId>spring-ai-azure-openai-spring-boot-starter</artifactId>-->

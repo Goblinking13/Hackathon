@@ -21,7 +21,6 @@ public class DocumentService {
     this.vectorStore = vectorStore;
   }
 
-  /** Добавить текст в векторное хранилище */
   public void addDocument(String text) {
 //    var embedding = embeddingClient.embed(text);
 //    var document = new VectorStoreDocument(text, embedding);

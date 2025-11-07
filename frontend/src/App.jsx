@@ -84,7 +84,8 @@ function App() {
 
   useEffect(() => {
 
-    const uuid = crypto.randomUUID();
+    // const uuid = crypto.randomUUID();
+    const uuid = "3fsdhjbfsdhj123123";
     setSessionId(uuid);
     console.log("Session ID:", uuid);
   }, []);
@@ -95,36 +96,28 @@ function App() {
 
   return (
 
-    <PanelGroup direction="horizontal" style={{height: "100vh"}}>
-      <Panel defaultSize={50} minSize={20}>
-        <div style={{backgroundColor: "blue", height: "100%"}}>
-          {/* Содержимое панели */}
+    <PanelGroup direction="horizontal" style={{ height: "100vh" }}>
+      {/* Левая панель (20%) */}
+      <Panel defaultSize={25} >
+        <div style={{ backgroundColor: "blue", height: "100%" }}>
+          {/* Содержимое левой панели */}
         </div>
       </Panel>
 
-
-      <PanelGroup direction="horizontal" style={{ height: "100vh" }}>
-        <Panel defaultSize={50} minSize={20}>
-          <div style={{ backgroundColor: "blue", height: "100%" }}>
-            {/* Содержимое панели */}
+      {/* Правая панель (80%) */}
+      <Panel defaultSize={80} minSize={50}>
+        <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+          {/* Основная область текста */}
+          <div style={{ flex: 1, overflowY: "auto" }}>
+            <TextArea text={text} onTextChange={setText} />
           </div>
-        </Panel>
 
-        <Panel defaultSize={50} minSize={20}>
-          <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-            {/* Основная область текста */}
-            <div style={{ flex: 1, overflowY: "auto" }}>
-              <TextArea text={text} onTextChange={setText} />
-            </div>
-
-            {/* Зона промпта */}
-            <div style={{ borderTop: "1px solid #ccc" }}>
-              <PromptArea onSend={handleSend} sessionId={sessionId} />
-            </div>
+          {/* Зона промпта */}
+          <div style={{ borderTop: "1px solid #ccc" }}>
+            <PromptArea onSend={handleSend} sessionId={sessionId} />
           </div>
-        </Panel>
-      </PanelGroup>
-
+        </div>
+      </Panel>
     </PanelGroup>
 
 
