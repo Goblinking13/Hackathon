@@ -1,22 +1,39 @@
-/* --- EternaCapital Sidebar --- */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Убираем любые отступы у контейнера react-resizable-panels */
+.PanelGroup {
+    margin: 0;
+    padding: 0;
+}
+
 .ec-sidebar {
     height: 100%;
-    background: #0e1c57;              /* тёмно-синий как на макете */
+    width: 100%;
+    background: #0e1c57; /* тёмно-синий */
     color: #eef3ff;
     display: flex;
     flex-direction: column;
     padding: 16px 14px;
     box-sizing: border-box;
+
+    /* Новое */
+    margin: 0;             /* убираем внешние зазоры */
+    border: none;          /* если вдруг у тебя был border */
 }
+
 
 .ec-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 30px;
     background: #f5f7ff;
     color: #0e1c57;
-    border-radius: 12px;
-    padding: 10px 14px;
+    border-radius: 120px;
+    padding: 18px 14px;
     font-weight: 700;
     margin-bottom: 22px;
 }
@@ -24,16 +41,24 @@
 .ec-logo-mark {
     display: grid;
     place-items: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
+    width: 60px;  /* увеличено */
+    height: 60px; /* увеличено */
+    border-radius: 16px;
     background: #0e1c57;
     color: #f5f7ff;
+    overflow: hidden;
 }
+
+.ec-logo-img {
+    width: 45px !important;
+    height: 45px !important;
+    object-fit: contain;
+}
+
 .ec-logo-text {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
-    font-size: 18px;
+    font-size: 26px;
 }
 
 .ec-nav {
@@ -57,7 +82,9 @@
     cursor: pointer;
     transition: transform .04s ease, background-color .15s ease, color .15s ease;
 }
-.ec-nav-item:hover { transform: translateY(-1px); }
+.ec-nav-item:hover {
+    background: rgba(74,163,255,0.25);
+}
 
 .ec-nav-item .ec-icon {
     width: 22px;
@@ -79,20 +106,32 @@
     padding: 12px;
 }
 
-.ec-nav-item.is-active.ec-nav-item--prominent {
-    background: #4aa3ff;              /* светло-голубая «пилюля» */
+/* Активная вкладка — синяя для любых пунктов */
+.ec-nav-item.is-active,
+.ec-nav-item[aria-current="page"] {
+    background: #4aa3ff;
     color: #0b1847;
-}
-.ec-nav-item.is-active:not(.ec-nav-item--prominent),
-.ec-nav-item:hover:not(.ec-nav-item--prominent) {
-    background: rgba(255,255,255,0.06);
+    font-weight: 600;
 }
 
+/* Hover только для неактивных */
+.ec-nav-item:hover:not(.is-active) {
+    background: rgba(74,163,255,0.25);
+    color: #fff; /* можно убрать если не нужно менять цвет */
+}
+
+/* Доступность: фокус-кольцо с клавиатуры */
+.ec-nav-item:focus-visible {
+    outline: 2px solid #4aa3ff;
+    outline-offset: 2px;
+}
+
+/* Разделитель и logout — без изменений */
 .ec-divider {
     height: 2px;
     background: rgba(255,255,255,0.5);
     border-radius: 2px;
-    margin: auto 4px 10px;            /* auto по вертикали — прижимает блок logout вниз */
+    margin: auto 4px 10px;
 }
 
 .ec-logout {
@@ -116,4 +155,21 @@
     stroke: currentColor;
     fill: none;
     stroke-width: 1.8;
+}
+
+.ec-logo-mark {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #f5f7ff;
+    color: #0e1c57;
+    overflow: hidden;
+}
+
+.ec-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
