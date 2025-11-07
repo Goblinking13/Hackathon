@@ -1,95 +1,119 @@
-html, body, #root {
-    background-color: #5b1498;
-    text-align: center;
-    margin-top: 2px;
-
-}
-
-
-.panel {
+/* --- EternaCapital Sidebar --- */
+.ec-sidebar {
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.5rem;
-}
-
-.left {
-    /*background-color: #e74c3c;*/
-}
-
-.right {
-    /*background-color: #2ecc71;*/
-}
-
-.PanelResizeHandle {
-    background: #ccc;
-    width: 10px;
-    cursor: col-resize;
-    transition: background 0.2s;
-}
-
-.PanelResizeHandle:hover {
-    background: #888;
-}
-
-.text-area{
-    width: 100%;
-    height: 500px;
-    padding: 10px;
-    font-size: 16px;
-    resize: vertical;
-    box-sizing: border-box;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    /*field-sizing: content;*/
-
-    /*width: 100%;*/
-    /*flex-grow: 1;*/
-    /*!*resize: none;*!*/
-    /*padding: 10px;*/
-    /*font-size: 16px;*/
-    /*border-radius: 8px;*/
-    /*border: 1px solid #ccc;*/
-    /*outline: none;*/
-    /*box-sizing: border-box;*/
-}
-
-
-.text-container {
-
-    margin: 10px;         /* отступ от краёв панели */
+    background: #0e1c57;              /* тёмно-синий как на макете */
+    color: #eef3ff;
     display: flex;
     flex-direction: column;
-    height: 100%;
-}
-
-.text-prompt-area{
-    width: 100%;
-    height: 200px;
-    padding: 10px;
-    font-size: 16px;
-    resize: vertical;
+    padding: 16px 14px;
     box-sizing: border-box;
+}
+
+.ec-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f5f7ff;
+    color: #0e1c57;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 700;
+    margin-bottom: 22px;
+}
+
+.ec-logo-mark {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
     border-radius: 8px;
-    border: 1px solid #ccc;
-
-
+    background: #0e1c57;
+    color: #f5f7ff;
+}
+.ec-logo-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+    font-size: 18px;
 }
 
-/* App.css */
-.my-button {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 20px;
-    font-size: 16px;
+.ec-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ec-nav-item {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    text-align: left;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: transform .04s ease, background-color .15s ease, color .15s ease;
+}
+.ec-nav-item:hover { transform: translateY(-1px); }
+
+.ec-nav-item .ec-icon {
+    width: 22px;
+    height: 22px;
+    display: grid;
+    place-items: center;
+}
+.ec-nav-item .ec-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: 1.5;
 }
 
-.my-button:hover {
-    background-color: #2980b9;
+.ec-label { font-size: 16px; }
+
+.ec-nav-item--prominent {
+    padding: 12px;
+}
+
+.ec-nav-item.is-active.ec-nav-item--prominent {
+    background: #4aa3ff;              /* светло-голубая «пилюля» */
+    color: #0b1847;
+}
+.ec-nav-item.is-active:not(.ec-nav-item--prominent),
+.ec-nav-item:hover:not(.ec-nav-item--prominent) {
+    background: rgba(255,255,255,0.06);
+}
+
+.ec-divider {
+    height: 2px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 2px;
+    margin: auto 4px 10px;            /* auto по вертикали — прижимает блок logout вниз */
+}
+
+.ec-logout {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: #cfe1ff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.ec-logout:hover { background: rgba(255,255,255,0.06); }
+
+.ec-logout svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
 }
