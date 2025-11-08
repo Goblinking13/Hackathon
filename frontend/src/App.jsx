@@ -1,24 +1,28 @@
 // App.jsx
 import { useEffect, useState } from "react";
 import { PanelGroup, Panel, PanelResizeHandle } from "react-resizable-panels";
+
 import ChatPage from "./pages/ChatPage.jsx";
-import Sidebar from "./Sidebar";
+import ProfilePage from "./pages/ProfilePage.jsx";
+import PredictionPage from "./pages/PredictionPage.jsx";   // ← добавили
+import SettingsPage from "./pages/SettingsPage.jsx";       // ← добавили
+
+import Sidebar from "./Sidebar.jsx";
 import "./styles/App.css";
 
-// Временные заглушки страниц — вынеси потом в ./pages/*.jsx
-function ProfilePage()       { return <div style={{padding:16,color:"#0e1c57"}}>Profile page</div>; }
-function PredictionPage()    { return <div style={{padding:16,color:"#0e1c57"}}>Prediction page</div>; }
-function SettingsPage()      { return <div style={{padding:16,color:"#0e1c57"}}>Settings page</div>; }
-
 function App() {
+    // сохраняем активную вкладку между перезагрузками
+    const [active, setActive] = useState(
+        () => localStorage.getItem("activeTab") || "ai-chat"
+    );
+    useEffect(() => localStorage.setItem("activeTab", active), [active]);
+
     const [text, setText] = useState("");
     const [sessionId, setSessionId] = useState("");
-    const [active, setActive] = useState("ai-chat");
 
     useEffect(() => {
-        const uuid = "3fsdhjbfsdhj123123";
+        const uuid = "3fsdhjbfsdhj123123"; // подставь реальный id, если есть
         setSessionId(uuid);
-        console.log("Session ID:", uuid);
     }, []);
 
     const handleSend = (promptText) => setText(promptText);
@@ -36,6 +40,8 @@ function App() {
                 return (
                     <ChatPage
                         sessionId={sessionId}
+                        // Если ChatPage использует onAssistantReply — пробрось так:
+                        // onAssistantReply={handleSend}
                         handleSend={handleSend}
                         text={text}
                         setText={setText}
@@ -51,9 +57,12 @@ function App() {
                 <Sidebar active={active} onNavigate={setActive} />
             </Panel>
 
+            {/* Делаем разделитель реально перетаскиваемым */}
+            <PanelResizeHandle className="PanelResizeHandle" />
+
             {/* RIGHT: content */}
             <Panel defaultSize={78} minSize={50}>
-                {renderContent()}
+                <div style={{ height: "100%", overflow: "auto" }}>{renderContent()}</div>
             </Panel>
         </PanelGroup>
     );

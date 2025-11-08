@@ -1,9 +1,8 @@
-/* Глобальный стиль для всего приложения */
 body, html, #root {
     font-family: "Inter", "Segoe UI", "Roboto", sans-serif;
-    font-size: 15px;        /* ← общий размер шрифта */
-    line-height: 1.45;      /* ← межстрочный интервал */
-    color: #0e1c57;         /* ← цвет основного текста */
+    font-size: 15px;
+    line-height: 1.45;
+    color: #0e1c57;
     background-color: #f5f7fb;
 }
 
@@ -24,7 +23,7 @@ body, html, #root {
 }
 .ec-chat-title {
     font-weight: 700;
-    font-size: 18px;
+    font-size: 26px;
 }
 
 /* Список сообщений */
@@ -75,7 +74,7 @@ body, html, #root {
     max-width: 72%;
     padding: 12px 14px;
     border-radius: 16px;
-    font-size: 14px;
+    font-size: 17px;
     line-height: 1.45;
     white-space: pre-wrap;
     word-break: break-word;
@@ -107,21 +106,38 @@ body, html, #root {
     border-top: 1px solid #A9A9A9;
     background: #fff;
 }
+
 .ec-input-area {
     background: #ECECEC;
     color: #0e1c57;
     flex: 1;
-    resize: none;
-    overflow: hidden;
-    min-height: 34px;            /* 🔹 меньше дефолта */
-    max-height: 120px;           /* 🔹 чуть ниже, чтобы не раздувалось */
-    padding: 8px 10px;           /* 🔹 компактнее */
+    resize: none;            /* чтобы нельзя было вручную растягивать */
+    overflow-y: auto;        /* 🔹 включает вертикальный скролл при переполнении */
+    overflow-x: hidden;      /* 🔹 горизонтальный скрываем */
+    min-height: 34px;
+    max-height: 120px;       /* 🔹 ограничение высоты */
+    padding: 8px 10px;
     border: 1px solid #d7def0;
     border-radius: 25px;
     outline: none;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.35;
+    scrollbar-width: thin;          /* 🔹 делает скролл тонким в Firefox */
+    scrollbar-color: #b4b4b4 #ECECEC; /* 🔹 цвет ползунка и фона в Firefox */
 }
+
+/* 🔹 Для Chrome / Edge / Safari — стилизуем скролл */
+.ec-input-area::-webkit-scrollbar {
+    width: 6px;
+}
+.ec-input-area::-webkit-scrollbar-thumb {
+    background-color: #b4b4b4;
+    border-radius: 4px;
+}
+.ec-input-area::-webkit-scrollbar-thumb:hover {
+    background-color: #8f8f8f;
+}
+
 
 .ec-input-area:focus {
     border-color: #8D8D8D;
