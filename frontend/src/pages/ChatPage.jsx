@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import "../styles/ChatPage.css";
 import aiAvatar from "../assets/ai-avatar.png";
 import { FaArrowUp } from "react-icons/fa";
+import { marked } from "marked";
+import DOMPurify from "dompurify";
 
 const SEND_URL = "http://localhost:8080/send/prompt";
 
@@ -80,6 +82,7 @@ export default function ChatPage({ sessionId, onAssistantReply }) {
     };
 
     return (
+
         <div className="ec-chat-root">
             <div className="ec-chat-header">
                 <div className="ec-chat-title">AI Chat Assistant</div>
@@ -115,10 +118,23 @@ export default function ChatPage({ sessionId, onAssistantReply }) {
 }
 
 // ─── UI: сообщение/аватар/картинки ────────────────────────────────────────────
+function MarkdownLite({ text }) {
+    const raw = typeof text === "string" ? text : String(text ?? "");
+    // GFM + переносы строк как в чате
+    const html = marked.parse(raw, { gfm: true, breaks: true });
+    const safe = DOMPurify.sanitize(html);
+    return <div className="ec-md" dangerouslySetInnerHTML={{ __html: safe }} />;
+}
+
 function Bubble({ role, text, subtle }) {
     const isUser = role === "user";
-    const imgUrls = extractImageUrls(text);
-    const cleanedText = text.replace(/https?:\/\/[^\s)]+/g, "").trim();
+
+    // 1) Готовим текст
+    const raw = typeof text === "string" ? text : String(text ?? "");
+    const imgUrls = extractImageUrls(raw);
+
+    // 2) Чтобы не дублировать картинки: вырезаем URL картинок из текста
+    const cleanedText = raw.replace(/https?:\/\/[^\s)]+/g, "").trim();
 
     return (
         <div className={`ec-bubble-row ${isUser ? "right" : "left"}`}>
@@ -129,7 +145,10 @@ function Bubble({ role, text, subtle }) {
             )}
 
             <div className={`ec-bubble ${isUser ? "user" : "asst"} ${subtle ? "subtle" : ""}`}>
-                {cleanedText && <div className="ec-text">{cleanedText}</div>}
+                {/* Markdown-текст (жирный, курсив, списки, код-блоки и т.д.) */}
+                {cleanedText && <MarkdownLite text={cleanedText} />}
+
+                {/* Картинки отдельными превью ниже текста */}
                 {imgUrls.map((url, i) => (
                     <ChatImage key={i} descriptor={{ type: "url", src: url, alt: "image" }} />
                 ))}
@@ -137,6 +156,7 @@ function Bubble({ role, text, subtle }) {
         </div>
     );
 }
+
 
 function extractImageUrls(text) {
     if (!text) return [];
