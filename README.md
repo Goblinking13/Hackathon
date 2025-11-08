@@ -1,2 +1,3 @@
 # Hackathon
-# lenin
+#EternaCapital
+#alwaysJuly
