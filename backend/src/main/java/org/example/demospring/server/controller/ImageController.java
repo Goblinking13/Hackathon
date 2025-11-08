@@ -47,7 +47,6 @@ public class ImageController {
     this.chatClient = chatClientBuilder
             .defaultAdvisors(new SimpleLoggerAdvisor())
             .build();
-//    this.imageModel = imageModel;
     this.imageGenerationService = imageGenerationService;
 
   }

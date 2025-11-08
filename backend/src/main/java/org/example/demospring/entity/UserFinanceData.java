@@ -22,9 +22,9 @@ public class UserFinanceData {
   private String currency;            // EUR, USD и т.д.
 
   @Column(length = 2000)
-  private String rawText; // исходный текст пользователя, из которого были извлечены данные
+  private String rawText;
 
-  // getters and setters
+
   public Long getId() { return id; }
   public void setId(Long id) { this.id = id; }
 

@@ -73,7 +73,7 @@ public class FetchDataAIService {
       return dataList;
 
     } catch (Exception e) {
-      System.err.println("❌ Failed to parse model reply: " + e.getMessage());
+      System.err.println("Failed to parse model reply: " + e.getMessage());
       return List.of();
     }
   }
