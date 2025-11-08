@@ -16,7 +16,7 @@ function uid() {
 // ─── ChatPage ───────────────────────────────────────────────────────────────────
 export default function ChatPage({ sessionId, onAssistantReply }) {
     const [messages, setMessages] = useState([
-        { id: uid(), role: "assistant", content: "👋 Hi there! I'm your AI financial assistant - ready to help you manage your money smarter.\n" },
+        { id: uid(), role: "assistant", content: "👋 Hi there! I'm your AI financial assistant - ready to help you manage your money smarter.\n"},
     ]);
     const [input, setInput] = useState("");
     const [isSending, setIsSending] = useState(false);

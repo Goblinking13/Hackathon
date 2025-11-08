@@ -1,0 +1,296 @@
+:root {
+    --navy: #0b1c52;
+    --panel: #e7eefb;
+    --panel-b: #b9ccef;
+    --white: #fff;
+    --muted: #8a98b3;
+    --radius: 22px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* ─────────────────────────── GRID ─────────────────────────── */
+.lp-grid {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    background: #f5f7fb;
+}
+
+/* ─────────────────────────── LEFT PANEL ─────────────────────────── */
+.lp-brand {
+    background: var(--navy);
+    color: #e6ebff;
+    position: relative;
+    overflow: hidden;
+}
+
+.lp-brand-badge {
+    margin: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: #0b1c52;
+    border-radius: 12px;
+    padding: 8px 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.lp-brand-badge .lp-bot svg {
+    width: 28px;
+    height: 28px;
+    stroke: #0b1c52;
+    fill: none;
+    stroke-width: 1.6;
+}
+
+.lp-brand-text {
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.2px;
+}
+
+.lp-illus {
+    position: absolute;
+    inset: 92px 24px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.lp-illus-row {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.lp-ico svg {
+    width: 84px;
+    height: 84px;
+    stroke: #cfd6ff;
+    fill: none;
+    stroke-width: 1.6;
+}
+
+.lp-ico.big svg {
+    width: 120px;
+    height: 120px;
+}
+
+.lp-chip {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    border: 2px solid rgba(255, 255, 255, 0.28);
+}
+
+.lp-chip svg {
+    width: 46px;
+    height: 46px;
+    stroke: #e6ebff;
+    fill: none;
+    stroke-width: 1.6;
+}
+
+/* ─────────────────────────── RIGHT PANEL ─────────────────────────── */
+.lp-auth {
+    display: grid;
+    place-items: center;
+    padding: 28px;
+    background: linear-gradient(
+            180deg,
+            #e7eefb 0%,
+            #e7eefb 60%,
+            #ebf1fc 100%
+    );
+}
+
+.lp-card {
+    width: min(560px, 92%);
+    background: rgba(215, 227, 244, 0.65);
+    border: 2px solid var(--panel-b);
+    border-radius: var(--radius);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 10px 30px rgba(13, 23, 62, 0.08);
+    padding: 42px 38px;
+    position: relative;
+}
+
+.lp-logo {
+    text-align: center;
+    color: #1f3a7e;
+    opacity: 0.9;
+    font-weight: 600;
+    font-size: 28px;
+    margin-top: -6px;
+}
+
+.lp-title {
+    margin: 18px 0 10px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a2a5a;
+}
+
+/* ─────────────────────────── INPUTS ─────────────────────────── */
+.lp-label {
+    font-weight: 600;
+    margin: 14px 0 8px;
+    font-size: 14px;
+    color: #2a3c6a;
+}
+
+.lp-control {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #d8dfea;
+    border-radius: 10px;
+    padding: 12px 12px;
+}
+
+.lp-control.invalid {
+    border-color: #ff9aa9;
+    box-shadow: 0 0 0 3px rgba(255, 0, 61, 0.08);
+}
+
+.lp-control input {
+    border: 0;
+    outline: 0;
+    width: 100%;
+    font: inherit;
+    color: #0e1c57;
+}
+
+.lp-control input::placeholder {
+    color: #9aa6bf;
+}
+
+/* ─────────────────────────── EYE ICON ─────────────────────────── */
+.lp-eye {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    margin-left: 8px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.lp-eye:hover {
+    opacity: 1;
+}
+
+.lp-eye svg {
+    width: 22px;
+    height: 22px;
+    stroke: #6b7aa6;
+    fill: none;
+    stroke-width: 1.8;
+}
+
+/* ─────────────────────────── ERROR TEXT ─────────────────────────── */
+.lp-error {
+    color: #b5003a;
+    font-size: 13px;
+    margin: 6px 0 0;
+}
+
+/* ─────────────────────────── BOTTOM ROW ─────────────────────────── */
+.lp-helper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.lp-remember {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    user-select: none;
+    cursor: pointer;
+}
+
+.lp-link {
+    color: #113c87;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.lp-link:hover {
+    text-decoration: underline;
+}
+
+/* ─────────────────────────── BUTTON ─────────────────────────── */
+.lp-btn {
+    display: block;
+    width: 100%;
+    border-radius: 12px;
+    background: #093663;
+    border: 0;
+    padding: 14px 16px;
+    margin-top: 22px;
+    font-weight: 750;
+    font-size: 18px;
+    color: #ece8e8;
+    box-shadow: 0 6px 20px rgba(9, 54, 99, 0.25);
+}
+
+.lp-btn:hover {
+    background: #0b4176;
+}
+
+/* ─────────────────────────── RESPONSIVE ─────────────────────────── */
+@media (max-width: 980px) {
+    .lp-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lp-brand {
+        min-height: 220px;
+    }
+
+    .lp-illus {
+        position: static;
+        padding: 20px 28px 0;
+    }
+}
+
+.ec-app-bar-logo-img {
+    width: 100%;               /* можно уменьшить до 40–60% от контейнера */
+    max-width: 512px;         /* или конкретно: 120–160px по дизайну */
+    height: auto;             /* сохраняет пропорции */
+    display: block;
+    margin: 24px auto 0;      /* центрируем и даём немного отступа сверху */
+    object-fit: contain;      /* чтобы не искажалось */
+}
+
+/* только для LoginPage */
+/* LoginPage.css */
+
+/* только внутри LoginPage */
+.lp-brand .lp-brand-badge {
+    width: 555px;              /* растягиваем бокс на всю ширину секции */     /* можешь увеличить до 480–520px */
+    height: 50px;        /* увеличиваем высоту (ранее, вероятно, 60–80px) */
+    background: #f5f7ff;      /* мягкий фон, если нужен */
+    border-radius: 16px;      /* красивые углы */
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;  /* выравниваем лого и текст по центру */
+    gap: 16px;                /* расстояние между логотипом и текстом */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* лёгкая тень */
+    padding: 14px 18px;
+    box-sizing: border-box;
+}
+
+
+
+

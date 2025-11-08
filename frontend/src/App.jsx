@@ -6,6 +6,7 @@ import ChatPage from "./pages/ChatPage.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import PredictionPage from "./pages/PredictionPage.jsx";   // ← добавили
 import SettingsPage from "./pages/SettingsPage.jsx";       // ← добавили
+import LoginPage from "./pages/LoginPage.jsx";
 
 import Sidebar from "./Sidebar.jsx";
 import "./styles/App.css";
@@ -35,6 +36,8 @@ function App() {
                 return <PredictionPage />;
             case "settings":
                 return <SettingsPage />;
+            case "login":
+                return <LoginPage onSubmit={() => setActive("ai-chat")} />;
             case "ai-chat":
             default:
                 return (
@@ -50,11 +53,18 @@ function App() {
         }
     };
 
-    return (
+    const handleLogout = () => {
+        localStorage.removeItem("activeTab");
+        setActive("login"); // 🔹 рендерим страницу логина
+    };
+
+    const showSidebar = active !== "login";
+
+    return showSidebar ? (
         <PanelGroup direction="horizontal" style={{ height: "100vh" }}>
             {/* LEFT: Sidebar */}
             <Panel defaultSize={22} minSize={18} maxSize={35}>
-                <Sidebar active={active} onNavigate={setActive} />
+                <Sidebar active={active} onNavigate={setActive} onLogout={handleLogout} />
             </Panel>
 
             {/* Делаем разделитель реально перетаскиваемым */}
@@ -65,6 +75,8 @@ function App() {
                 <div style={{ height: "100%", overflow: "auto" }}>{renderContent()}</div>
             </Panel>
         </PanelGroup>
+    ) : (
+        <div style={{ height: "100vh", overflow: "auto" }}>{renderContent()}</div>
     );
 }
 
