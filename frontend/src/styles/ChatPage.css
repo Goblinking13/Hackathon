@@ -65,38 +65,38 @@ body, html, #root {
 .ec-avatar-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;                /* 🔹 аватар не искажается */
+    object-fit: cover;
 }
 
-
-/* Пузырьки */
 .ec-bubble {
-    max-width: 65%;              /* уже, чем раньше */
-    max-height: 45%;
-    padding: 6px 12px;           /* меньше отступы */
+    display: inline-block;
+    max-width: 65%;
+    padding: 8px 12px;
     border-radius: 12px;
-    font-size: 16px;             /* чуть мельче шрифт */
-    line-height: 1.3;
+    font-size: 16px;
+    line-height: 1.8;
     color: #0e1c57;
-    background: #ffffff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    white-space: pre-wrap;
+    background: #cfe0ff;
+    border: 1px solid #b7cdfd;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    box-sizing: border-box;
     word-break: break-word;
-    text-align: center;
-
-    /* идеальное центрирование */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    /* аккуратный переход при анимациях */
-    transition: all 0.15s ease;
+    white-space: normal;
+    height: auto;
 }
 
-.ec-bubble .ec-md {
-    display: block;
-    transform: translateY(10px);   /* опустить текст на 2px */
+.ec-bubble > * { margin-block: 0; }
+.ec-bubble p,
+.ec-bubble h1, .ec-bubble h2, .ec-bubble h3,
+.ec-bubble h4, .ec-bubble h5, .ec-bubble h6,
+.ec-bubble ul, .ec-bubble ol,
+.ec-bubble pre, .ec-bubble blockquote {
+    margin: 0;
 }
+
+.ec-bubble .ec-md { margin: 0; }
+
+.ec-bubble > * + * { margin-top: .35em; }
 
 .ec-bubble.asst {
     background: #fff;

@@ -16,7 +16,55 @@ function uid() {
 // ─── ChatPage ───────────────────────────────────────────────────────────────────
 export default function ChatPage({ sessionId, onAssistantReply }) {
     const [messages, setMessages] = useState([
-        { id: uid(), role: "assistant", content: "👋 Hi there! I'm your AI financial assistant - ready to help you manage your money smarter.\n" },
+        { id: uid(), role: "assistant", content: "That’s a unique and exciting goal, Islam! Let’s see how you can plan for buying a camel based on your financial situation.\n" +
+                "\n" +
+                "### Your Financial Snapshot:\n" +
+                "- Monthly Income: $1,000\n" +
+                "- Monthly Expenses: $900–$1,000 (leaving little room for savings).\n" +
+                "- Savings & Debts: Not specified.\n" +
+                "\n" +
+                "### Camel Costs:\n" +
+                "The price of a camel can vary greatly depending on the type, age, and region. On average:\n" +
+                "- Basic camel: $1,000–$3,000\n" +
+                "- High-quality camel (breeding, racing): $5,000–$10,000 or more\n" +
+                "\n" +
+                "Let’s assume you’re aiming for a camel worth $2,000 for this plan.\n" +
+                "\n" +
+                "---\n" +
+                "\n" +
+                "### Steps to Buy a Camel:\n" +
+                "\n" +
+                "1. Cut Transportation Costs (Taxi):\n" +
+                "   - You currently spend $30/day on taxis, which amounts to $900/month.\n" +
+                "   - If you buy a camel, you can potentially eliminate most taxi expenses while saving money on transport.\n" +
+                "   - Start by cutting your taxi budget in half ($450/month saved) while working towards the camel purchase.\n" +
+                "\n" +
+                "2. Set a Savings Goal:\n" +
+                "   - If you save $500/month, you could reach $2,000 within 4 months.\n" +
+                "   - If you save less, let’s say $200/month, you’ll need 10 months to save $2,000.\n" +
+                "\n" +
+                "3. Explore Affordable Options:\n" +
+                "   - Look for local sellers or markets that offer good-quality camels within your budget.\n" +
+                "   - You might find a younger camel or one better suited to your needs for $1,500-$2,000.\n" +
+                "\n" +
+                "4. Avoid Debt: \n" +
+                "   - Since your income is modest, avoid taking loans for the camel. Stick to saving to avoid financial strain.\n" +
+                "\n" +
+                "---\n" +
+                "\n" +
+                "### Benefits of Owning a Camel:\n" +
+                "- Reduce Transport Costs: A camel might help you cut down on taxi expenses, saving up to $900/month.\n" +
+                "- Cultural Value: Camels often hold cultural significance and can be a source of pride.\n" +
+                "- Long-Term Investment: Depending on your goals (breeding, selling, etc.), camels could even be profitable.\n" +
+                "\n" +
+                "---\n" +
+                "\n" +
+                "### Action Plan:\n" +
+                "1. Start saving $500/month by cutting transportation and other non-essential expenses.\n" +
+                "2. Research camel sellers and prices in your region.\n" +
+                "3. You can buy a $2,000 camel in 4 months if you stick to your savings plan.\n" +
+                "\n" +
+                "Let me know if you’d like help creating a detailed savings plan or comparing camel prices! 🐪" },
     ]);
     const [input, setInput] = useState("");
     const [isSending, setIsSending] = useState(false);
