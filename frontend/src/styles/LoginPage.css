@@ -11,7 +11,6 @@
     box-sizing: border-box;
 }
 
-/* ─────────────────────────── GRID ─────────────────────────── */
 .lp-grid {
     min-height: 100vh;
     display: grid;
@@ -19,7 +18,6 @@
     background: #f5f7fb;
 }
 
-/* ─────────────────────────── LEFT PANEL ─────────────────────────── */
 .lp-brand {
     background: var(--navy);
     color: #e6ebff;
@@ -97,7 +95,6 @@
     stroke-width: 1.6;
 }
 
-/* ─────────────────────────── RIGHT PANEL ─────────────────────────── */
 .lp-auth {
     display: grid;
     place-items: center;
@@ -137,7 +134,6 @@
     color: #1a2a5a;
 }
 
-/* ─────────────────────────── INPUTS ─────────────────────────── */
 .lp-label {
     font-weight: 600;
     margin: 14px 0 8px;
@@ -171,7 +167,6 @@
     color: #9aa6bf;
 }
 
-/* ─────────────────────────── EYE ICON ─────────────────────────── */
 .lp-eye {
     border: 0;
     background: transparent;
@@ -193,14 +188,12 @@
     stroke-width: 1.8;
 }
 
-/* ─────────────────────────── ERROR TEXT ─────────────────────────── */
 .lp-error {
     color: #b5003a;
     font-size: 13px;
     margin: 6px 0 0;
 }
 
-/* ─────────────────────────── BOTTOM ROW ─────────────────────────── */
 .lp-helper {
     display: flex;
     justify-content: space-between;
@@ -228,7 +221,6 @@
     text-decoration: underline;
 }
 
-/* ─────────────────────────── BUTTON ─────────────────────────── */
 .lp-btn {
     display: block;
     width: 100%;
@@ -247,7 +239,6 @@
     background: #0b4176;
 }
 
-/* ─────────────────────────── RESPONSIVE ─────────────────────────── */
 @media (max-width: 980px) {
     .lp-grid {
         grid-template-columns: 1fr;
@@ -264,33 +255,25 @@
 }
 
 .ec-app-bar-logo-img {
-    width: 100%;               /* можно уменьшить до 40–60% от контейнера */
-    max-width: 512px;         /* или конкретно: 120–160px по дизайну */
-    height: auto;             /* сохраняет пропорции */
+    width: 100%;
+    max-width: 512px;
+    height: auto;
     display: block;
-    margin: 24px auto 0;      /* центрируем и даём немного отступа сверху */
-    object-fit: contain;      /* чтобы не искажалось */
+    margin: 24px auto 0;
+    object-fit: contain;
 }
 
-/* только для LoginPage */
-/* LoginPage.css */
-
-/* только внутри LoginPage */
 .lp-brand .lp-brand-badge {
-    width: 555px;              /* растягиваем бокс на всю ширину секции */     /* можешь увеличить до 480–520px */
-    height: 50px;        /* увеличиваем высоту (ранее, вероятно, 60–80px) */
-    background: #f5f7ff;      /* мягкий фон, если нужен */
-    border-radius: 16px;      /* красивые углы */
+    width: 555px;
+    height: 50px;
+    background: #f5f7ff;
+    border-radius: 16px;
     margin-left: 16px;
     display: flex;
     align-items: center;
-    justify-content: center;  /* выравниваем лого и текст по центру */
-    gap: 16px;                /* расстояние между логотипом и текстом */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* лёгкая тень */
+    justify-content: center;
+    gap: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     padding: 14px 18px;
     box-sizing: border-box;
 }
-
-
-
-

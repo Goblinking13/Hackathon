@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {useEffect, useMemo, useRef, useState} from "react";
 import Button from "react-bootstrap/Button";
 import "../styles/ChatPage.css";
 import aiAvatar from "../assets/ai-avatar.png";
-import { FaArrowUp } from "react-icons/fa";
-import { marked } from "marked";
+import {FaArrowUp} from "react-icons/fa";
+import {marked} from "marked";
 import DOMPurify from "dompurify";
 
 const SEND_URL = "http://localhost:8080/send/prompt";
@@ -13,10 +13,13 @@ function uid() {
     return Math.random().toString(36).slice(2) + Date.now().toString(36);
 }
 
-// ─── ChatPage ───────────────────────────────────────────────────────────────────
-export default function ChatPage({ sessionId, onAssistantReply }) {
+export default function ChatPage({sessionId, onAssistantReply}) {
     const [messages, setMessages] = useState([
-        { id: uid(), role: "assistant", content: "👋 Hi there! I'm your AI financial assistant - ready to help you manage your money smarter.\n"},
+        {
+            id: uid(),
+            role: "assistant",
+            content: "👋 Hi there! I'm your AI financial assistant - ready to help you manage your money smarter.\n"
+        },
     ]);
     const [input, setInput] = useState("");
     const [isSending, setIsSending] = useState(false);
@@ -24,14 +27,12 @@ export default function ChatPage({ sessionId, onAssistantReply }) {
     const listRef = useRef(null);
     const textareaRef = useRef(null);
 
-    // автопрокрутка
     useEffect(() => {
         if (listRef.current) {
-            listRef.current.scrollTo({ top: listRef.current.scrollHeight, behavior: "smooth" });
+            listRef.current.scrollTo({top: listRef.current.scrollHeight, behavior: "smooth"});
         }
     }, [messages, isSending]);
 
-    // авто-resize textarea
     useEffect(() => {
         const ta = textareaRef.current;
         if (!ta) return;
@@ -41,32 +42,31 @@ export default function ChatPage({ sessionId, onAssistantReply }) {
 
     const canSend = useMemo(() => input.trim().length > 0 && !isSending, [input, isSending]);
 
-    // ─── отправка сообщения ─────────────────────────────────────────────────────
     const sendMessage = async () => {
         const prompt = input.trim();
         if (!prompt) return;
         setInput("");
 
-        const userMsg = { id: uid(), role: "user", content: prompt };
+        const userMsg = {id: uid(), role: "user", content: prompt};
         setMessages((prev) => [...prev, userMsg]);
         setIsSending(true);
 
         try {
             const res = await fetch(SEND_URL, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ sessionId, prompt }),
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({sessionId, prompt}),
             });
             if (!res.ok) throw new Error("Server error");
             const data = await res.text();
 
-            const asstMsg = { id: uid(), role: "assistant", content: data || "…(empty answer)" };
+            const asstMsg = {id: uid(), role: "assistant", content: data || "…(empty answer)"};
             setMessages((prev) => [...prev, asstMsg]);
             onAssistantReply?.(data);
         } catch (e) {
             setMessages((prev) => [
                 ...prev,
-                { id: uid(), role: "assistant", content: "Error: Unable to contact the server." },
+                {id: uid(), role: "assistant", content: "Error: Unable to contact the server."},
             ]);
             console.error(e);
         } finally {
@@ -90,9 +90,9 @@ export default function ChatPage({ sessionId, onAssistantReply }) {
 
             <div className="ec-chat-list" ref={listRef}>
                 {
-                    messages.map((m) => <Bubble key={m.id} role={m.role} text={m.content} />)}
+                    messages.map((m) => <Bubble key={m.id} role={m.role} text={m.content}/>)}
 
-                {isSending && <Bubble role="assistant" text="Thinking…" subtle />}
+                {isSending && <Bubble role="assistant" text="Thinking…" subtle/>}
             </div>
 
             <div className="ec-chat-input">
@@ -110,47 +110,44 @@ export default function ChatPage({ sessionId, onAssistantReply }) {
                     disabled={!canSend}
                     title="Send message"
                 >
-                    <FaArrowUp size={18} />
+                    <FaArrowUp size={18}/>
                 </Button>
             </div>
         </div>
     );
 }
 
-// ─── UI: сообщение/аватар/картинки ────────────────────────────────────────────
-function MarkdownLite({ text }) {
+function MarkdownLite({text}) {
     const raw = typeof text === "string" ? text : String(text ?? "");
     // GFM + переносы строк как в чате
-    const html = marked.parse(raw, { gfm: true, breaks: true });
+    const html = marked.parse(raw, {gfm: true, breaks: true});
     const safe = DOMPurify.sanitize(html);
-    return <div className="ec-md" dangerouslySetInnerHTML={{ __html: safe }} />;
+    return <div className="ec-md" dangerouslySetInnerHTML={{__html: safe}}/>;
 }
 
-function Bubble({ role, text, subtle }) {
+function Bubble({role, text, subtle}) {
     const isUser = role === "user";
 
-    // 1) Готовим текст
     const raw = typeof text === "string" ? text : String(text ?? "");
     const imgUrls = extractImageUrls(raw);
 
-    // 2) Чтобы не дублировать картинки: вырезаем URL картинок из текста
     const cleanedText = raw.replace(/https?:\/\/[^\s)]+/g, "").trim();
 
     return (
         <div className={`ec-bubble-row ${isUser ? "right" : "left"}`}>
             {!isUser && (
                 <div className="ec-avatar">
-                    <img src={aiAvatar} alt="AI Avatar" className="ec-avatar-img" />
+                    <img src={aiAvatar} alt="AI Avatar" className="ec-avatar-img"/>
                 </div>
             )}
 
             <div className={`ec-bubble ${isUser ? "user" : "asst"} ${subtle ? "subtle" : ""}`}>
-                {/* Markdown-текст (жирный, курсив, списки, код-блоки и т.д.) */}
-                {cleanedText && <MarkdownLite text={cleanedText} />}
+                {}
+                {cleanedText && <MarkdownLite text={cleanedText}/>}
 
-                {/* Картинки отдельными превью ниже текста */}
+                {}
                 {imgUrls.map((url, i) => (
-                    <ChatImage key={i} descriptor={{ type: "url", src: url, alt: "image" }} />
+                    <ChatImage key={i} descriptor={{type: "url", src: url, alt: "image"}}/>
                 ))}
             </div>
         </div>
@@ -164,7 +161,7 @@ function extractImageUrls(text) {
     return [...text.matchAll(regex)].map((m) => m[1]);
 }
 
-function ChatImage({ descriptor }) {
+function ChatImage({descriptor}) {
     const [src, setSrc] = useState(null);
     const [loading, setLoading] = useState(descriptor.type === "server");
     const [error, setError] = useState(null);
@@ -194,6 +191,7 @@ function ChatImage({ descriptor }) {
                 if (!cancelled) setLoading(false);
             }
         }
+
         load();
 
         return () => {
@@ -202,7 +200,7 @@ function ChatImage({ descriptor }) {
         };
     }, [descriptor]);
 
-    if (loading) return <div className="ec-img-skeleton" aria-label="Loading image…" />;
+    if (loading) return <div className="ec-img-skeleton" aria-label="Loading image…"/>;
     if (error) return <div className="ec-img-error">Failed to load image</div>;
 
     return (
@@ -220,7 +218,7 @@ function ChatImage({ descriptor }) {
                     marginTop: "6px"
                 }}
             />
-            {/*<img src={src} alt={descriptor.alt || "image"} className="ec-img" />*/}
+            {}
         </a>
     );
 }

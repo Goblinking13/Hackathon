@@ -4,7 +4,6 @@ html, body, #root {
     padding: 0;
 }
 
-/* Убираем любые отступы у контейнера react-resizable-panels */
 .PanelGroup {
     margin: 0;
     padding: 0;
@@ -13,18 +12,15 @@ html, body, #root {
 .ec-sidebar {
     height: 100%;
     width: 100%;
-    background: #0e1c57; /* тёмно-синий */
+    background: #0e1c57;
     color: #eef3ff;
     display: flex;
     flex-direction: column;
     padding: 16px 14px;
     box-sizing: border-box;
-
-    /* Новое */
-    margin: 0;             /* убираем внешние зазоры */
-    border: none;          /* если вдруг у тебя был border */
+    margin: 0;
+    border: none;
 }
-
 
 .ec-logo {
     display: flex;
@@ -41,8 +37,8 @@ html, body, #root {
 .ec-logo-mark {
     display: grid;
     place-items: center;
-    width: 60px;  /* увеличено */
-    height: 60px; /* увеличено */
+    width: 60px;
+    height: 60px;
     border-radius: 16px;
     background: #0e1c57;
     color: #f5f7ff;
@@ -82,8 +78,9 @@ html, body, #root {
     cursor: pointer;
     transition: transform .04s ease, background-color .15s ease, color .15s ease;
 }
+
 .ec-nav-item:hover {
-    background: rgba(74,163,255,0.25);
+    background: rgba(74, 163, 255, 0.25);
 }
 
 .ec-nav-item .ec-icon {
@@ -92,6 +89,7 @@ html, body, #root {
     display: grid;
     place-items: center;
 }
+
 .ec-nav-item .ec-icon svg {
     width: 22px;
     height: 22px;
@@ -100,13 +98,14 @@ html, body, #root {
     stroke-width: 1.5;
 }
 
-.ec-label { font-size: 16px; }
+.ec-label {
+    font-size: 16px;
+}
 
 .ec-nav-item--prominent {
     padding: 12px;
 }
 
-/* Активная вкладка — синяя для любых пунктов */
 .ec-nav-item.is-active,
 .ec-nav-item[aria-current="page"] {
     background: #4aa3ff;
@@ -114,22 +113,19 @@ html, body, #root {
     font-weight: 600;
 }
 
-/* Hover только для неактивных */
 .ec-nav-item:hover:not(.is-active) {
-    background: rgba(74,163,255,0.25);
-    color: #fff; /* можно убрать если не нужно менять цвет */
+    background: rgba(74, 163, 255, 0.25);
+    color: #fff;
 }
 
-/* Доступность: фокус-кольцо с клавиатуры */
 .ec-nav-item:focus-visible {
     outline: 2px solid #4aa3ff;
     outline-offset: 2px;
 }
 
-/* Разделитель и logout — без изменений */
 .ec-divider {
     height: 2px;
-    background: rgba(255,255,255,0.5);
+    background: rgba(255, 255, 255, 0.5);
     border-radius: 2px;
     margin: auto 4px 10px;
 }
@@ -147,7 +143,10 @@ html, body, #root {
     border-radius: 10px;
     cursor: pointer;
 }
-.ec-logout:hover { background: rgba(255,255,255,0.06); }
+
+.ec-logout:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
 
 .ec-logout svg {
     width: 22px;

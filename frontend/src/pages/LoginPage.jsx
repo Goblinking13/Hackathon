@@ -1,10 +1,10 @@
-import React, { useId, useState } from "react";
+import React, {useId, useState} from "react";
 import Button from "react-bootstrap/Button";
 import "../styles/LoginPage.css";
 import appLogo from "../assets/logo.png";
 import appbarIco from "../assets/appbarIco.png";
 
-export default function LoginPage({ onSubmit, brand = "EternaCapital" }) {
+export default function LoginPage({onSubmit, brand = "EternaCapital"}) {
     const emailId = useId();
     const passId = useId();
     const [email, setEmail] = useState("");
@@ -23,22 +23,20 @@ export default function LoginPage({ onSubmit, brand = "EternaCapital" }) {
     const handleSubmit = (ev) => {
         ev.preventDefault();
         if (!validate()) return;
-        onSubmit?.({ email, password: pwd });
-        // demo:
-        // alert(JSON.stringify({ email, password: pwd }, null, 2));
+        onSubmit?.({email, password: pwd});
     };
 
     return (
         <main className="lp-grid">
-            {/* Left brand panel */}
+            {}
             <section className="lp-brand">
                 <div className="lp-brand-badge">
-                    <img src={appLogo} alt="EternaCapital logo" className="ec-logo-img" />
+                    <img src={appLogo} alt="EternaCapital logo" className="ec-logo-img"/>
                     <span className="lp-brand-text">{brand}</span>
                 </div>
-                <img src={appbarIco} alt="EternaCapital application bar-logo" className="ec-app-bar-logo-img" />
+                <img src={appbarIco} alt="EternaCapital application bar-logo" className="ec-app-bar-logo-img"/>
             </section>
-            {/* Right auth card */}
+            {}
             <section className="lp-auth">
                 <form className="lp-card" onSubmit={handleSubmit} noValidate>
                     <h1 className="lp-title">Login</h1>
@@ -73,10 +71,10 @@ export default function LoginPage({ onSubmit, brand = "EternaCapital" }) {
                             className="lp-eye"
                             onClick={() => setShowPwd((v) => !v)}
                         >
-                            {/* simple eye icon */}
+                            {}
                             <svg viewBox="0 0 24 24">
-                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
-                                <circle cx="12" cy="12" r="3" />
+                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/>
+                                <circle cx="12" cy="12" r="3"/>
                             </svg>
                         </button>
                     </div>
@@ -84,7 +82,7 @@ export default function LoginPage({ onSubmit, brand = "EternaCapital" }) {
 
                     <div className="lp-helper">
                         <label className="lp-remember">
-                            <input type="checkbox" /> Remember me
+                            <input type="checkbox"/> Remember me
                         </label>
                         <a className="lp-link" href="#">Forgot password?</a>
                     </div>

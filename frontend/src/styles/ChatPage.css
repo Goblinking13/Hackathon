@@ -6,7 +6,6 @@ body, html, #root {
     background-color: #f5f7fb;
 }
 
-
 .ec-chat-root {
     height: 100%;
     display: flex;
@@ -15,18 +14,17 @@ body, html, #root {
     color: #0e1c57;
 }
 
-/* Верхняя панель */
 .ec-chat-header {
     padding: 12px 16px;
     border-bottom: 1px solid #e5e9f2;
     background: #fff;
 }
+
 .ec-chat-title {
     font-weight: 700;
     font-size: 26px;
 }
 
-/* Список сообщений */
 .ec-chat-list {
     flex: 1;
     overflow-y: auto;
@@ -36,25 +34,25 @@ body, html, #root {
     gap: 14px;
 }
 
-/* Ряды сообщений */
 .ec-bubble-row {
     display: flex;
     align-items: flex-end;
     gap: 8px;
 }
+
 .ec-bubble-row.left {
     justify-content: flex-start;
 }
+
 .ec-bubble-row.right {
     justify-content: flex-end;
 }
 
-/* Аватарки */
 .ec-avatar {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    overflow: hidden;                 /* чтобы фото не вылазило за круг */
+    overflow: hidden;
     background: #eef3ff;
     border: 1px solid #dbe3ff;
     display: flex;
@@ -78,14 +76,17 @@ body, html, #root {
     color: #0e1c57;
     background: #cfe0ff;
     border: 1px solid #b7cdfd;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     box-sizing: border-box;
     word-break: break-word;
     white-space: normal;
     height: auto;
 }
 
-.ec-bubble > * { margin-block: 0; }
+.ec-bubble > * {
+    margin-block: 0;
+}
+
 .ec-bubble p,
 .ec-bubble h1, .ec-bubble h2, .ec-bubble h3,
 .ec-bubble h4, .ec-bubble h5, .ec-bubble h6,
@@ -94,9 +95,13 @@ body, html, #root {
     margin: 0;
 }
 
-.ec-bubble .ec-md { margin: 0; }
+.ec-bubble .ec-md {
+    margin: 0;
+}
 
-.ec-bubble > * + * { margin-top: .35em; }
+.ec-bubble > * + * {
+    margin-top: .35em;
+}
 
 .ec-bubble.asst {
     background: #fff;
@@ -104,18 +109,19 @@ body, html, #root {
     color: #15204d;
     border-top-left-radius: 6px;
 }
+
 .ec-bubble.user {
     background: #cfe0ff;
     color: #0e1c57;
     border: 1px solid #b7cdfd;
     border-top-right-radius: 6px;
 }
+
 .ec-bubble.subtle {
     opacity: 0.7;
     font-style: italic;
 }
 
-/* Поле ввода */
 .ec-chat-input {
     display: flex;
     align-items: center;
@@ -129,29 +135,30 @@ body, html, #root {
     background: #ECECEC;
     color: #0e1c57;
     flex: 1;
-    resize: none;            /* чтобы нельзя было вручную растягивать */
-    overflow-y: auto;        /* 🔹 включает вертикальный скролл при переполнении */
-    overflow-x: hidden;      /* 🔹 горизонтальный скрываем */
+    resize: none;
+    overflow-y: auto;
+    overflow-x: hidden;
     min-height: 34px;
-    max-height: 120px;       /* 🔹 ограничение высоты */
+    max-height: 120px;
     padding: 8px 10px;
     border: 1px solid #d7def0;
     border-radius: 25px;
     outline: none;
     font-size: 16px;
     line-height: 1.35;
-    scrollbar-width: thin;          /* 🔹 делает скролл тонким в Firefox */
-    scrollbar-color: #b4b4b4 #ECECEC; /* 🔹 цвет ползунка и фона в Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #b4b4b4 #ECECEC;
 }
 
-/* 🔹 Для Chrome / Edge / Safari — стилизуем скролл */
 .ec-input-area::-webkit-scrollbar {
     width: 6px;
 }
+
 .ec-input-area::-webkit-scrollbar-thumb {
     background-color: #b4b4b4;
     border-radius: 4px;
 }
+
 .ec-input-area::-webkit-scrollbar-thumb:hover {
     background-color: #8f8f8f;
 }
@@ -161,12 +168,13 @@ body, html, #root {
     border-color: #8D8D8D;
     box-shadow: 0 0 0 3px rgba(122, 162, 255, 0.15);
 }
+
 .ec-send-btn {
     width: 55px;
     height: 55px;
     min-width: 40px;
-    border-radius: 50%;              /* делает её круглой */
-    background: #3b56f0;             /* насыщенно-синий, можно поменять */
+    border-radius: 50%;
+    background: #3b56f0;
     border: none;
     color: #fff;
     font-size: 18px;
@@ -178,19 +186,18 @@ body, html, #root {
 }
 
 .ec-send-btn:hover:not(:disabled) {
-    background: #5469ff;             /* светлее при наведении */
+    background: #5469ff;
     transform: translateY(-1px);
 }
 
 .ec-send-btn:disabled {
     background: rgba(195, 195, 195, 0.88);
     opacity: 0.7;
-    cursor: default; /* ← обычный курсор вместо 🚫 */
-    pointer-events: none; /* чтобы не кликалось */
+    cursor: default;
+    pointer-events: none;
 }
 
 
-/* Адаптив */
 @media (max-width: 640px) {
     .ec-bubble {
         max-width: 86%;

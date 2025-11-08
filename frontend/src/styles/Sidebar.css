@@ -18,7 +18,6 @@
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* 🔹 Вот тут магия подсветки */
 .ec-link.active {
     background: #eef3ff;
     color: #0e1c57;

@@ -3,7 +3,6 @@
     transform-origin: top left;
 }
 
-/* тултип */
 .chart-tooltip {
     background: rgba(255, 255, 255, 0.95);
     border: 1px solid #e1e6ef;
