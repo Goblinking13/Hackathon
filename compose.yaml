@@ -13,6 +13,8 @@ services:
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_SHOW_SQL: "true"
+      AZURE_API_KEY: ${AZURE_API_KEY}
+      AZURE_ENDPOINT: ${AZURE_ENDPOINT}
     networks:
       - react-spring
       - spring-psql
