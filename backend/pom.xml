@@ -8,7 +8,7 @@
         <version>3.5.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.example</groupId>
+    <groupId>org.project</groupId>
     <artifactId>demoSpring</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demoSpring</name>
@@ -79,20 +79,20 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.ai</groupId>
-            <artifactId>spring-ai-starter-vector-store-pinecone</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>spring-cloud-azure-starter-data-cosmos</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.ai</groupId>-->
+<!--            <artifactId>spring-ai-starter-vector-store-pinecone</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.azure.spring</groupId>-->
+<!--            <artifactId>spring-cloud-azure-starter-data-cosmos</artifactId>-->
+<!--        </dependency>-->
 
-        <dependency>
-            <groupId>com.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
-            <version>5.9</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.opencsv</groupId>-->
+<!--            <artifactId>opencsv</artifactId>-->
+<!--            <version>5.9</version>-->
+<!--        </dependency>-->
 
         <!--        <dependency>-->
 <!--            <groupId>org.springframework.ai</groupId>-->
